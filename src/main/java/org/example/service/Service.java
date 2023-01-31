@@ -81,7 +81,7 @@ public class Service implements Serv {
     }
 
 
-    public boolean checkExistOnTicket(List<ProductforSale> proSafeListIn, int idIn){
+    public boolean checkExistOnTicket(List<ProductforSale> proSafeListIn, String nameIn) {
         //region DEFINITION VARIABLES
         boolean resul = false, exit = false;
         int index = 0;
@@ -90,18 +90,18 @@ public class Service implements Serv {
 
 
         //region ACTIONS
-        try{
-            do{
-                if(proSafeListIn.get(index).getProduct().getId() == idIn ){
-                    exit =true;
+        try {
+            do {
+                if (proSafeListIn.get(index).getProduct().getName().equals(nameIn)) {
+                    exit = true;
                     resul = true;
                 }
 
                 index++;
-            }while (proSafeListIn.size() < index || exit != true);
+            } while (proSafeListIn.size() < index || exit != true);
 
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
         }
         //endregion ACTIONS
@@ -128,7 +128,7 @@ public class Service implements Serv {
         //region ACTIONS
         try {
             // INIT VARIABLES
-            if(repoCls == null) {
+            if (repoCls == null) {
                 repoCls = new Repository();
             }
 
@@ -691,6 +691,7 @@ public class Service implements Serv {
                     repoCls.updateTree((Tree) p.getProduct());
                 }
             }
+            result = true;
 
         } catch (Exception ex) {
             result = false;
